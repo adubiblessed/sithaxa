@@ -1,4 +1,39 @@
+import os
 from pathlib import Path
+
+
+class FolderMapping:
+    def __init__(self, **kwargs):
+        self.rootpath = kwargs.get("rootpath", None)
+        self.project_map = {}
+
+    def scan_all(self, rootpath):
+        self.project_map = {}
+        self.path = Path(rootpath)
+        for current_path, dirs, files in os.walk(self.path):
+            folder_path = Path(current_path)
+            folder_entry = {
+                "folder_name": folder_path.name,
+                "folder_path": str(folder_path),
+                "subfolders": dirs,
+                "files": [],
+            }
+            
+            for file_name in files:
+                file_path = folder_path.joinpath(file_name)
+                file_entry = {
+                    "file_name": file_name,
+                    "file_path": str(file_path),
+                    "extension": file_path.suffix.lower(),
+                    "size_bytes": file_path.stat().st_size
+                }
+                folder_entry["files"].append(file_entry)
+
+            self.project_map[str(folder_path)] = folder_entry
+            
+        return self.project_map
+
+
 
 class FileOperations:
     def __init__(self, **kwargs):

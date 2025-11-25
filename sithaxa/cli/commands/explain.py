@@ -27,7 +27,7 @@ def explain(
 
     # Create prompt
     prompt = EXPLAIN_CODE_PROMPT.format(code_snippet=code)
-    # API call with reasoning
+
     response = client.chat.completions.create(
         model="x-ai/grok-4.1-fast",
         messages=[
