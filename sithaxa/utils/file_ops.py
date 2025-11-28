@@ -25,7 +25,6 @@ class FolderMapping:
                     "file_name": file_name,
                     "file_path": str(file_path),
                     "extension": file_path.suffix.lower(),
-                    "size_bytes": file_path.stat().st_size
                 }
                 folder_entry["files"].append(file_entry)
 
