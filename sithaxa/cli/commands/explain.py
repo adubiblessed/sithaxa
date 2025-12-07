@@ -1,7 +1,7 @@
 import typer
 import os
 
-from sithaxa.cli.commands.load import client
+from sithaxa.core.ai_connector import client
 from sithaxa.utils.file_ops import FileOperations
 
 from sithaxa.core.promts_templates.prompts import EXPLAIN_CODE_PROMPT
